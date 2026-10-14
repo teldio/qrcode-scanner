@@ -1,0 +1,6 @@
+{
+  "ios": {
+    "NSCameraUsageDescription": "Permita que $(PRODUCT_NAME) aceda à câmara para ler QR Codes e códigos de barras.",
+    "NSPhotoLibraryUsageDescription": "Permita que $(PRODUCT_NAME) aceda às fotografias para ler QR Codes a partir de imagens."
+  }
+}

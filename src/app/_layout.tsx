@@ -1,18 +1,33 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
-import { useColorScheme } from 'react-native';
+import { DarkTheme, Stack, ThemeProvider } from 'expo-router';
 
-import { AnimatedSplashOverlay } from '@/components/animated-icon';
-import AppTabs from '@/components/app-tabs';
+import { Brand } from '@/constants/theme';
 
-SplashScreen.preventAutoHideAsync();
-
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
+export default function RootLayout() {
+  // The scanner is a camera-first, always-dark UI.
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <AnimatedSplashOverlay />
-      <AppTabs />
+    <ThemeProvider value={DarkTheme}>
+      <Stack
+        screenOptions={{
+          headerShown: false,
+          contentStyle: { backgroundColor: Brand.background },
+        }}>
+        <Stack.Screen name="index" />
+        <Stack.Screen
+          name="history"
+          options={{
+            // The translated title is set by the screen itself.
+            headerShown: true,
+            headerLargeTitleEnabled: true,
+            headerBackButtonDisplayMode: 'minimal',
+            headerTintColor: Brand.primary,
+            headerTitleStyle: { color: Brand.text },
+            headerLargeTitleStyle: { color: Brand.text },
+            headerStyle: { backgroundColor: Brand.background },
+            headerLargeStyle: { backgroundColor: Brand.background },
+            headerShadowVisible: false,
+          }}
+        />
+      </Stack>
     </ThemeProvider>
   );
 }

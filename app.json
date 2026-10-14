@@ -6,37 +6,86 @@
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "qrcodescanner",
-    "userInterfaceStyle": "automatic",
+    "userInterfaceStyle": "dark",
     "ios": {
-      "icon": "./assets/expo.icon"
+      "bundleIdentifier": "com.withoutads.qrcodescanner",
+      "icon": "./assets/images/icon.png",
+      "infoPlist": {
+        "CFBundleAllowMixedLocalizations": true,
+        "CFBundleLocalizations": [
+          "pt",
+          "en"
+        ]
+      }
     },
     "android": {
+      "package": "com.withoutads.qrcodescanner",
+      "icon": "./assets/images/icon-rounded.png",
       "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/images/android-icon-foreground.png",
-        "backgroundImage": "./assets/images/android-icon-background.png",
-        "monochromeImage": "./assets/images/android-icon-monochrome.png"
+        "monochromeImage": "./assets/images/android-icon-monochrome.png",
+        "backgroundColor": "#1A2933"
       },
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "permissions": [
+        "android.permission.CAMERA"
+      ]
     },
     "web": {
       "output": "static",
       "favicon": "./assets/images/favicon.png"
+    },
+    "locales": {
+      "pt": "./locales/pt.json",
+      "en": "./locales/en.json"
     },
     "plugins": [
       "expo-router",
       [
         "expo-splash-screen",
         {
-          "backgroundColor": "#208AEF",
+          "backgroundColor": "#FFB900",
           "image": "./assets/images/splash-icon.png",
-          "imageWidth": 76
+          "imageWidth": 280
+        }
+      ],
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera to scan QR codes and barcodes.",
+          "microphonePermission": false,
+          "recordAudioAndroid": false
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Allow $(PRODUCT_NAME) to access your photos to scan QR codes from images.",
+          "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera to scan QR codes and barcodes.",
+          "microphonePermission": false
+        }
+      ],
+      "expo-sqlite",
+      [
+        "expo-localization",
+        {
+          "supportedLocales": [
+            "pt",
+            "en"
+          ]
         }
       ]
     ],
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
+    },
+    "owner": "teldio",
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "85e3d290-fa5a-452a-a03d-49e248c1a104"
+      }
     }
   }
 }

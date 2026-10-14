@@ -1,55 +1,43 @@
 /**
- * Below are the colors that are used in the app. The colors are defined in the light and dark mode.
- * There are many other ways to style your app. For example, [Nativewind](https://www.nativewind.dev/), [Tamagui](https://tamagui.dev/), [unistyles](https://reactnativeunistyles.vercel.app), etc.
+ * Design tokens for the app. Import from here instead of hardcoding colors, spacing or radii.
  */
 
-import '@/global.css';
-
-import { Platform } from 'react-native';
-
-export const Colors = {
-  light: {
-    text: '#000000',
-    background: '#ffffff',
-    backgroundElement: '#F0F0F3',
-    backgroundSelected: '#E0E1E6',
-    textSecondary: '#60646C',
-  },
-  dark: {
-    text: '#ffffff',
-    background: '#000000',
-    backgroundElement: '#212225',
-    backgroundSelected: '#2E3135',
-    textSecondary: '#B0B4BA',
-  },
+/**
+ * Brand palette for the scanner. These are deliberately fixed (not light/dark pairs):
+ * every scanner surface sits on top of the live camera feed, so it is always a dark UI.
+ * Plain strings so they can also be used inside Reanimated styles.
+ */
+export const Brand = {
+  primary: '#FFB900',
+  primaryLight: '#FFD34D',
+  primaryDark: '#F5A300',
+  onPrimary: '#1A1300',
+  primaryGlow: 'rgba(255, 185, 0, 0.55)',
+  primaryTint: 'rgba(255, 185, 0, 0.14)',
+  primaryBorder: 'rgba(255, 185, 0, 0.35)',
+  text: '#FFFFFF',
+  textSecondary: 'rgba(255, 255, 255, 0.72)',
+  surface: 'rgba(22, 22, 22, 0.72)',
+  surfaceStrong: 'rgba(14, 14, 14, 0.85)',
+  border: 'rgba(255, 255, 255, 0.10)',
+  gridLine: 'rgba(255, 255, 255, 0.08)',
+  scrim: 'rgba(0, 0, 0, 0.45)',
+  background: '#0B0B0B',
+  sheet: '#161616',
 } as const;
 
-export type ThemeColor = keyof typeof Colors.light & keyof typeof Colors.dark;
+export const BrandGradients = {
+  primary: `linear-gradient(to bottom, ${Brand.primaryLight} 0%, ${Brand.primary} 55%, ${Brand.primaryDark} 100%)`,
+  scanLine: `linear-gradient(to right, rgba(255, 185, 0, 0) 0%, ${Brand.primaryLight} 20%, #FFF4CC 50%, ${Brand.primaryLight} 80%, rgba(255, 185, 0, 0) 100%)`,
+  scanButton: `radial-gradient(circle at 50% 30%, ${Brand.primaryLight} 0%, ${Brand.primary} 60%, ${Brand.primaryDark} 100%)`,
+} as const;
 
-export const Fonts = Platform.select({
-  ios: {
-    /** iOS `UIFontDescriptorSystemDesignDefault` */
-    sans: 'system-ui',
-    /** iOS `UIFontDescriptorSystemDesignSerif` */
-    serif: 'ui-serif',
-    /** iOS `UIFontDescriptorSystemDesignRounded` */
-    rounded: 'ui-rounded',
-    /** iOS `UIFontDescriptorSystemDesignMonospaced` */
-    mono: 'ui-monospace',
-  },
-  default: {
-    sans: 'normal',
-    serif: 'serif',
-    rounded: 'normal',
-    mono: 'monospace',
-  },
-  web: {
-    sans: 'var(--font-display)',
-    serif: 'var(--font-serif)',
-    rounded: 'var(--font-rounded)',
-    mono: 'var(--font-mono)',
-  },
-});
+export const Radius = {
+  sm: 8,
+  md: 16,
+  lg: 24,
+  full: 9999,
+} as const;
 
 export const Spacing = {
   half: 2,
@@ -61,5 +49,9 @@ export const Spacing = {
   six: 64,
 } as const;
 
-export const BottomTabInset = Platform.select({ ios: 50, android: 80 }) ?? 0;
-export const MaxContentWidth = 800;
+export const Motion = {
+  press: 120,
+  fast: 150,
+  base: 250,
+  scanLine: 2200,
+} as const;

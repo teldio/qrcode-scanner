@@ -1,0 +1,6 @@
+{
+  "ios": {
+    "NSCameraUsageDescription": "Allow $(PRODUCT_NAME) to access your camera to scan QR codes and barcodes.",
+    "NSPhotoLibraryUsageDescription": "Allow $(PRODUCT_NAME) to access your photos to scan QR codes from images."
+  }
+}
